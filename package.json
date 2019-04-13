@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "7.1.2",
     "@angular/router": "7.1.2",
     "core-js": "^3.0.1",
+    "jquery": "^3.4.0",
     "ngf-bootstrap": "0.0.5",
     "rxjs": "6.3.3",
     "zone.js": "0.8.26"
