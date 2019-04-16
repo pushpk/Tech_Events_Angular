@@ -40,12 +40,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _events_events_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./events/events-list.component */ "./src/app/events/events-list.component.ts");
 /* harmony import */ var _events_event_thumbnail_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events/event-thumbnail.component */ "./src/app/events/event-thumbnail.component.ts");
 /* harmony import */ var _events_shared_events_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./events/shared/events.service */ "./src/app/events/shared/events.service.ts");
+/* harmony import */ var _common_toastr_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./common/toastr.service */ "./src/app/common/toastr.service.ts");
+/* harmony import */ var _events_event_detail_event_detail_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./events/event-detail/event-detail.component */ "./src/app/events/event-detail/event-detail.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _guards_event_route_activator_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./guards/event-route-activator.service */ "./src/app/guards/event-route-activator.service.ts");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./routes */ "./src/app/routes.ts");
+/* harmony import */ var _events_create_event_create_event_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./events/create-event/create-event.component */ "./src/app/events/create-event/create-event.component.ts");
+/* harmony import */ var _errors_404__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./errors/404 */ "./src/app/errors/404.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
+
 
 
 
@@ -61,17 +75,98 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _events_app_component__WEBPACK_IMPORTED_MODULE_2__["EventsAppComponent"],
                 _nav_navbar_component__WEBPACK_IMPORTED_MODULE_3__["NavbarComponent"],
+                _errors_404__WEBPACK_IMPORTED_MODULE_13__["NotFound"],
                 _events_events_list_component__WEBPACK_IMPORTED_MODULE_4__["EventsListComponent"],
-                _events_event_thumbnail_component__WEBPACK_IMPORTED_MODULE_5__["EventThumbnailComponent"]
+                _events_event_thumbnail_component__WEBPACK_IMPORTED_MODULE_5__["EventThumbnailComponent"],
+                _events_event_detail_event_detail_component__WEBPACK_IMPORTED_MODULE_8__["EventDetailComponent"],
+                _events_create_event_create_event_component__WEBPACK_IMPORTED_MODULE_12__["CreateEventComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_9__["RouterModule"].forRoot(_routes__WEBPACK_IMPORTED_MODULE_11__["appRoutes"])
             ],
-            providers: [_events_shared_events_service__WEBPACK_IMPORTED_MODULE_6__["EventsService"]],
+            providers: [_events_shared_events_service__WEBPACK_IMPORTED_MODULE_6__["EventsService"], _common_toastr_service__WEBPACK_IMPORTED_MODULE_7__["ToastrService"], _guards_event_route_activator_service__WEBPACK_IMPORTED_MODULE_10__["EventRouteActivator"]],
             bootstrap: [_events_app_component__WEBPACK_IMPORTED_MODULE_2__["EventsAppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/common/toastr.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/common/toastr.service.ts ***!
+  \******************************************/
+/*! exports provided: ToastrService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToastrService", function() { return ToastrService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var ToastrService = /** @class */ (function () {
+    function ToastrService() {
+    }
+    ToastrService.prototype.success = function (message, title) {
+        toastr.success(message, title);
+    };
+    ToastrService.prototype.info = function (message, title) {
+        toastr.info(message, title);
+    };
+    ToastrService.prototype.warning = function (message, title) {
+        toastr.warning(message, title);
+    };
+    ToastrService.prototype.error = function (message, title) {
+        toastr.error(message, title);
+    };
+    ToastrService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+    ], ToastrService);
+    return ToastrService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/errors/404.ts":
+/*!*******************************!*\
+  !*** ./src/app/errors/404.ts ***!
+  \*******************************/
+/*! exports provided: NotFound */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotFound", function() { return NotFound; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var NotFound = /** @class */ (function () {
+    function NotFound() {
+    }
+    NotFound = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: '404-app',
+            template: '<h1>404 : NOT FOUND!</h1>'
+        })
+    ], NotFound);
+    return NotFound;
 }());
 
 
@@ -103,10 +198,149 @@ var EventsAppComponent = /** @class */ (function () {
     EventsAppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'events-app',
-            template: "\n  <app-navbar></app-navbar>\n  <app-events-list></app-events-list>\n  "
+            template: "\n  <app-navbar></app-navbar>\n  <router-outlet></router-outlet>\n  "
         })
     ], EventsAppComponent);
     return EventsAppComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/events/create-event/create-event.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/events/create-event/create-event.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2V2ZW50cy9jcmVhdGUtZXZlbnQvY3JlYXRlLWV2ZW50LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/events/create-event/create-event.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/events/create-event/create-event.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>New Event</h1>\n<hr>\n<div class=\"col-md-6\">\n  <h3>[Create Event Form will go here]</h3>\n  <br/>\n  <br/>\n  <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"cancel()\">Cancel</button>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/events/create-event/create-event.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/events/create-event/create-event.component.ts ***!
+  \***************************************************************/
+/*! exports provided: CreateEventComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateEventComponent", function() { return CreateEventComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CreateEventComponent = /** @class */ (function () {
+    function CreateEventComponent(router) {
+        this.router = router;
+    }
+    CreateEventComponent.prototype.ngOnInit = function () {
+    };
+    CreateEventComponent.prototype.cancel = function () {
+        this.router.navigate(['/events']);
+    };
+    CreateEventComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-create-event',
+            template: __webpack_require__(/*! ./create-event.component.html */ "./src/app/events/create-event/create-event.component.html"),
+            styles: [__webpack_require__(/*! ./create-event.component.css */ "./src/app/events/create-event/create-event.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], CreateEventComponent);
+    return CreateEventComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/events/event-detail/event-detail.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/events/event-detail/event-detail.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".container { padding-left:20px; padding-right: 20px; }\r\n.event-image { height: 100px; }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZXZlbnRzL2V2ZW50LWRldGFpbC9ldmVudC1kZXRhaWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxhQUFhLGtCQUFrQixDQUFDLG9CQUFvQixFQUFFO0FBQ3RELGVBQWUsY0FBYyxFQUFFIiwiZmlsZSI6InNyYy9hcHAvZXZlbnRzL2V2ZW50LWRldGFpbC9ldmVudC1kZXRhaWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXIgeyBwYWRkaW5nLWxlZnQ6MjBweDsgcGFkZGluZy1yaWdodDogMjBweDsgfVxyXG4uZXZlbnQtaW1hZ2UgeyBoZWlnaHQ6IDEwMHB4OyB9Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/events/event-detail/event-detail.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/events/event-detail/event-detail.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <img [src]=\"event?.imageUrl\" [alt]=\"event?.name\" class=\"event-image\">\n\n  <div class=\"row\">\n    <div class=\"col-md-11\">\n      <h2>{{event?.name}} </h2>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div><strong>Date:</strong> {{event?.date}}</div>\n      <div><strong>Time:</strong> {{event?.time}}</div>\n      <div><strong>Price:</strong> ${{event?.price}}</div>\n    </div>\n    <div class=\"col-md-6\">\n      <address>\n        <strong>Address:</strong><br />\n        {{event?.location?.address}}<br />\n        {{event?.location?.city}}, {{event?.location?.country}}\n      </address>\n    </div>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/events/event-detail/event-detail.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/events/event-detail/event-detail.component.ts ***!
+  \***************************************************************/
+/*! exports provided: EventDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventDetailComponent", function() { return EventDetailComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_events_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/events.service */ "./src/app/events/shared/events.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var EventDetailComponent = /** @class */ (function () {
+    function EventDetailComponent(eventService, route) {
+        this.eventService = eventService;
+        this.route = route;
+    }
+    EventDetailComponent.prototype.ngOnInit = function () {
+        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+    };
+    EventDetailComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-event-detail',
+            template: __webpack_require__(/*! ./event-detail.component.html */ "./src/app/events/event-detail/event-detail.component.html"),
+            styles: [__webpack_require__(/*! ./event-detail.component.css */ "./src/app/events/event-detail/event-detail.component.css")]
+        }),
+        __metadata("design:paramtypes", [_shared_events_service__WEBPACK_IMPORTED_MODULE_1__["EventsService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+    ], EventDetailComponent);
+    return EventDetailComponent;
 }());
 
 
@@ -131,7 +365,7 @@ module.exports = ".pad-left { margin-left: 10px; }\r\n.well div { color: #bbb; }
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"well hoverwell thumbnail\">\n  <h2>{{event?.name}}</h2>\n  <div>Date: {{event?.date}}</div>\n  <div>Time: {{event?.time}}</div>\n  <div>Price: \\${{event?.price}}</div>\n  <div>\n      <div *ngIf=\"event?.location\">\n          <span>Location: {{event?.location?.address}}</span>\n          <span class=\"pad-left\">{{event?.location?.city}}, {{event?.location?.country}}</span>\n        </div>\n        <div *ngIf=\"event?.onlineUrl\">\n          Online URL: {{event?.onlineUrl}}\n          \n        </div>\n  </div>\n</div>"
+module.exports = "<div class=\"well hoverwell thumbnail\" [routerLink]=\"[ '/events', event.id ]\">\n  \n  <h2>{{event?.name}}</h2>\n  <div>Date: {{event?.date}}</div>\n  <div>Time: {{event?.time}}</div>\n  <div>Price: \\${{event?.price}}</div>\n  <div>\n      <div *ngIf=\"event?.location\">\n          <span>Location: {{event?.location?.address}}</span>\n          <span class=\"pad-left\">{{event?.location?.city}}, {{event?.location?.country}}</span>\n        </div>\n        <div *ngIf=\"event?.onlineUrl\">\n          Online URL: {{event?.onlineUrl}}\n          \n        </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -198,7 +432,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <h1>Upcoming Angular Events</h1>\n  <hr/>\n  <div class=\"row\">\n    <div *ngFor=\"let event of events\" class=\"col-md-5\">\n    <app-event-thumbnail [event]=\"event\"></app-event-thumbnail>\n  </div>\n  </div>\n  \n</div>\n"
+module.exports = "<div>\n  <h1>Upcoming Angular Events</h1>\n  <hr/>\n  <div class=\"row\">\n    <div *ngFor=\"let event of events\" class=\"col-md-5\">\n    <app-event-thumbnail [event]=\"event\" (click)=\"handleThumbnailClick(event.name)\"></app-event-thumbnail>\n  </div>\n  </div>\n  \n</div>\n"
 
 /***/ }),
 
@@ -214,6 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventsListComponent", function() { return EventsListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_events_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shared/events.service */ "./src/app/events/shared/events.service.ts");
+/* harmony import */ var _common_toastr_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/toastr.service */ "./src/app/common/toastr.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -225,12 +460,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var EventsListComponent = /** @class */ (function () {
-    function EventsListComponent(eventService) {
+    function EventsListComponent(eventService, toastrService) {
         this.eventService = eventService;
+        this.toastrService = toastrService;
     }
     EventsListComponent.prototype.ngOnInit = function () {
         this.events = this.eventService.getEvents();
+    };
+    EventsListComponent.prototype.handleThumbnailClick = function (eventName) {
+        this.toastrService.success(eventName);
     };
     EventsListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -238,7 +478,7 @@ var EventsListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./events-list.component.html */ "./src/app/events/events-list.component.html"),
             styles: [__webpack_require__(/*! ./events-list.component.css */ "./src/app/events/events-list.component.css")]
         }),
-        __metadata("design:paramtypes", [_shared_events_service__WEBPACK_IMPORTED_MODULE_1__["EventsService"]])
+        __metadata("design:paramtypes", [_shared_events_service__WEBPACK_IMPORTED_MODULE_1__["EventsService"], _common_toastr_service__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
     ], EventsListComponent);
     return EventsListComponent;
 }());
@@ -270,6 +510,9 @@ var EventsService = /** @class */ (function () {
     }
     EventsService.prototype.getEvents = function () {
         return EVENTS;
+    };
+    EventsService.prototype.getEvent = function (id) {
+        return EVENTS.find(function (s) { return s.id === id; });
     };
     EventsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
@@ -534,6 +777,48 @@ var EVENTS = [
 
 /***/ }),
 
+/***/ "./src/app/guards/event-route-activator.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/guards/event-route-activator.service.ts ***!
+  \*********************************************************/
+/*! exports provided: EventRouteActivator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventRouteActivator", function() { return EventRouteActivator; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var EventRouteActivator = /** @class */ (function () {
+    function EventRouteActivator(router) {
+        this.router = router;
+    }
+    EventRouteActivator.prototype.canActivate = function (route) {
+        this.router.navigate(['/404']);
+        return true;
+    };
+    EventRouteActivator = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], EventRouteActivator);
+    return EventRouteActivator;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/nav/navbar.component.css":
 /*!******************************************!*\
   !*** ./src/app/nav/navbar.component.css ***!
@@ -552,7 +837,7 @@ module.exports = "\r\n    .nav.navbar-nav {font-size: 15px;}\r\n    #searchForm 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a class=\"navbar-brand\" >ngEvents</a>\n    </div>\n\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a >All Events</a>\n        </li>\n        <li><a href=\"\">Create Event</a></li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" >\n            Events\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li >\n              <a href=\"\">Angular Connect</a>\n            </li>\n          </ul>\n        </li>\n      </ul>\n      <div class=\"navbar-header navbar-right\">\n        <ul class=\"nav navbar-nav\">\n          <li>\n            <a>Welcome Pushpak</a>\n          </li>\n        </ul>\n      </div>\n      <form id=\"searchForm\"  class=\"navbar-form navbar-right\"  >\n        <div class=\"form-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"Search Sessions\" >\n        </div>\n        <button class=\"btn btn-default\" >\n          Search\n        </button>\n      </form>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a class=\"navbar-brand\" >ngEvents</a>\n    </div>\n\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a [routerLink]=\"[ '/events']\">All Events</a>\n        </li>\n        <li><a href=\"\" [routerLink]=\"[ '/events/new']\">Create Event</a></li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" >\n            Events\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li >\n              <a href=\"\">Angular Connect</a>\n            </li>\n          </ul>\n        </li>\n      </ul>\n      <div class=\"navbar-header navbar-right\">\n        <ul class=\"nav navbar-nav\">\n          <li>\n            <a>Welcome Pushpak</a>\n          </li>\n        </ul>\n      </div>\n      <form id=\"searchForm\"  class=\"navbar-form navbar-right\"  >\n        <div class=\"form-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"Search Sessions\" >\n        </div>\n        <button class=\"btn btn-default\" >\n          Search\n        </button>\n      </form>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -593,6 +878,37 @@ var NavbarComponent = /** @class */ (function () {
     return NavbarComponent;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/routes.ts":
+/*!***************************!*\
+  !*** ./src/app/routes.ts ***!
+  \***************************/
+/*! exports provided: appRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRoutes", function() { return appRoutes; });
+/* harmony import */ var _events_events_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./events/events-list.component */ "./src/app/events/events-list.component.ts");
+/* harmony import */ var _events_event_detail_event_detail_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./events/event-detail/event-detail.component */ "./src/app/events/event-detail/event-detail.component.ts");
+/* harmony import */ var _events_create_event_create_event_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./events/create-event/create-event.component */ "./src/app/events/create-event/create-event.component.ts");
+/* harmony import */ var _guards_event_route_activator_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./guards/event-route-activator.service */ "./src/app/guards/event-route-activator.service.ts");
+/* harmony import */ var _errors_404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./errors/404 */ "./src/app/errors/404.ts");
+
+
+
+
+
+var appRoutes = [
+    { path: 'events', component: _events_events_list_component__WEBPACK_IMPORTED_MODULE_0__["EventsListComponent"] },
+    { path: 'events/new', component: _events_create_event_create_event_component__WEBPACK_IMPORTED_MODULE_2__["CreateEventComponent"] },
+    { path: 'events/:id', component: _events_event_detail_event_detail_component__WEBPACK_IMPORTED_MODULE_1__["EventDetailComponent"], canActivate: [_guards_event_route_activator_service__WEBPACK_IMPORTED_MODULE_3__["EventRouteActivator"]] },
+    { path: 'events/404', component: _errors_404__WEBPACK_IMPORTED_MODULE_4__["NotFound"] },
+    { path: '', redirectTo: '/events', pathMatch: 'full' }
+];
 
 
 /***/ }),
